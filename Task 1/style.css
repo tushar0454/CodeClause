@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(45deg, red, blue);
+}
+
+.container {
+    background: #fff;
+    max-width: 400px;
+    width: 100%;
+    margin: 120px auto;
+    padding: 25px;
+    border-radius: 5px;
+}
+
+.container header{
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 13px;
+}
+
+.container inputBox{
+    width: 100%;
+    margin: 20px 0;
+    display: flex;
+    height: 45px;
+}
+
+.inputBox input{
+    width: 85%;
+    height: 35px;
+    outline: none;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    font-size: 17px;
+    padding-left: 15px;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.inputBox input:focus{
+    border-color: #8E49E8;
+}
+
+.inputBox button{
+    width: 45px;
+    height: 35px;
+    border: none;
+    color: #fff;
+    margin-left: 3px;
+    font-size: 18px;
+    outline: none;
+    background: #8E49E8;
+    cursor: pointer;
+    border-radius: 3px;
+    opacity: 0.6;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+ 
+.inputBox button:hover,
+.footer button:hover{
+  background: #721ce3;
+}
+
+/* .inputBox button:hover{
+    background: #e74c3c;
+} */
+
+.inputBox button.active{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.container .footer{
+    width: 100%;
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer button{
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #8E49E8;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    border-radius: 3px;
+    padding: 6px 10px;
+    font-size: 16px;
+    font-weight: 400;
+    pointer-events: none;
+}
+
+.footer button.active{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.container .todolist{
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.todolist li {
+    list-style: none;
+    height: 45px;
+    line-height: 45px;
+    position: relative;
+    background: #f2f2f2;
+    padding: 0 15px;
+    margin-bottom: 8px;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.todolist li span{
+    position: absolute;
+    right: -45px;
+    color: #fff;
+    background: #e74c3c;
+    width: 45px;
+    text-align: center;
+    border-radius:  0 3px 3px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.todolist li:hover span {
+    right: 0px;
+}
+

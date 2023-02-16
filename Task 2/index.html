@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+
+*{
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, rgb(18, 194, 233), rgb(196, 113, 237), rgb(246, 79, 89));
+}
+
+.container {
+    width: 600px;;
+    height: 650px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 8px 8px 8px 0 rgb(161, 4, 145);
+}
+
+h2{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    /* text-shadow: 2px 2px 8px rgb(161, 4, 145); */
+    text-shadow: 10px 6px 2px pink;
+}
+
+#first_username, #last_username, #email, #phone{
+    display: inline-block;
+    padding: 12px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    margin-left: 15px;
+    border: 1px solid rgb(168, 166, 166);
+    background-color: rgb(244, 236, 247);
+}
+
+#first_username:hover{
+    box-shadow: 10px 5px 5px rgb(190, 47, 252);
+    transition: 0.3s;
+}
+
+#last_username:hover{
+    box-shadow: 10px 5px 5px rgb(190, 47, 252);
+    transition: 0.5s;
+}
+#email:hover{
+    box-shadow: 10px 5px 5px rgb(190, 47, 252);
+    transition: 0.3s;
+}
+#phone:hover{
+    box-shadow: 10px 5px 5px rgb(190, 47, 252);
+    transition: 0.3s;
+}
+#address {
+    display: inline-block;
+    width: 350px;
+    padding: 14px 14px;
+    border-radius: 8px;
+    margin-left: 17px;
+    margin-bottom: 20px;
+    border: 1px solid rgb(168, 166, 166);
+    background-color: rgb(245, 238, 238);
+}
+#address:hover{
+    box-shadow: 10px 5px 5px rgb(190, 47, 252);
+}
+
+textarea {
+    width: 350px;
+    height: 110px;
+    border-radius: 8px;   
+    padding: 14px 14px;
+    margin-left: 17px;
+    resize: none;
+    margin-bottom: 20px;
+    border: 1px solid rgb(168, 166, 166);
+    background-color: rgb(245, 238, 238);
+}
+textarea:hover{
+    box-shadow: 10px 5px 5px rgb(190, 47, 252);
+}
+
+.Submit-btn{
+    padding: 16px 28px;
+    font-weight: 400;
+    margin-top: 18px;
+    border-radius: 26px;
+    border: 1px solid rgb(168, 166, 166);
+    background-color: rgb(190, 47, 252);
+    color: #fff ;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.g-recaptcha{
+    margin-left: 120px;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+        <h2>Contact Form</h2>
+        <form id="form">
+            <input type="text" id="first_username" placeholder="First Name" name="first_username">
+            
+            <input type="text" id="last_username" placeholder="Last Name" name="last_username">
+            <br>
+            <input type="email" id="email" placeholder="Email" name="email">
+            
+            <input type="tel" id="phone" placeholder="Phone" name="phone">
+            <br>
+            <input type="text" id="address" placeholder="Address" name="address">
+            <br>
+            <textarea name="description" id="description" placeholder="Type your message here" name="description"></textarea>
+            <br>
+            <div class="g-recaptcha" data-sitekey="6LfXqmwkAAAAALsDGQtQJnONRvrGGHi2dfPiI8Kf"></div>
+            <input type="submit" value="Submit" class="Submit-btn">
+        </form>
+        </div>
+
+        <script>
+            document.getElementById("form").addEventListener('submit', submitForm);
+
+            function submitForm(e){
+                e.preventDefault();
+
+                const first_username = document.querySelector('#first_username').value;
+                const last_username = document.querySelector('#last_username').value;
+                const email = document.querySelector('#email').value;
+                const phone = document.querySelector('#phone').value;
+                const address = document.querySelector('#address').value;
+                const description = document.querySelector('#description').value;
+                const captcha = document.querySelector('.g-recaptcha').value;
+
+                fetch('/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        first_username:first_username,
+                        last_username:last_username,
+                        email:email,
+                        phone:phone,
+                        address:address,
+                        description:description,
+                        captcha:captcha
+                    })
+                })
+                    .then((res) => res.json())
+                    .then((data) =>{
+                        console.log(data);
+                        alert('Please select the Captcha');
+                    });
+            }
+        </script>
+</body>
+</html>
+</div>
